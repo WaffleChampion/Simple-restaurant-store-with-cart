@@ -1,0 +1,12 @@
+.header {
+	background-color: cyan;
+	position: absolute;
+	font-size: 2rem;
+	height: 10rem;
+	width: 100%;
+}
+
+.header-container{
+	position: relative;
+	top: 0;
+}
