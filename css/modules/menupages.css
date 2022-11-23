@@ -1,0 +1,48 @@
+.menu-item{
+	position: relative;
+	height: 95%;
+	width: 95%;
+	left: 2.5%;
+	right: 2.5%;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+	background-color: aliceblue;
+	display: grid;
+	gap: 2rem;
+	grid-template-areas: 
+	"header-text header-text header-text"
+	"menu-image menu-text menu-text"
+	"menu-image menu-text menu-text"
+	"menu-button menu-text menu-text"
+
+
+}
+
+.menu-item__header{
+	grid-area: header-text;
+}
+
+.menu-item__image{
+	grid-area: menu-image;
+}
+
+.menu-item__info{
+	grid-area: menu-text;
+}
+
+.menu-item__button{
+	grid-area: menu-button;
+	background-color: red;
+	margin: 2rem;
+
+}
+
+@media screen and (max-width: 767px) {
+	.menu-item{
+		grid-template-areas: 
+		"header-text"
+		"menu-image"
+		"menu-text"
+		"menu-button";
+	}
+	}

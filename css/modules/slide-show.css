@@ -1,11 +1,31 @@
 .slide-show__container{
 	position: relative;
 	width: 95%;
-	height: 40%;
+	height: 30rem;
 	background-color: red;
 	left: 2.5%;
 	right: 2.5%;
 	margin-top: 2rem;
 	margin-bottom: 2rem;
 	border-radius: 20px;
+	padding: 1rem;
+}
+
+.slide-show__object{
+	position: relative;
+	height: 100%;
+	width: 50%;
+	left: 25%;
+}
+
+.slide-show__image{
+	object-fit: scale-down;
+	height: 100%;
+	width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+	.slide-show__container{
+		display: none;
+	}
 }
