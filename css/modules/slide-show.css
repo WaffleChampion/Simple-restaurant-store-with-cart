@@ -1,0 +1,11 @@
+.slide-show__container{
+	position: relative;
+	width: 95%;
+	height: 40%;
+	background-color: red;
+	left: 2.5%;
+	right: 2.5%;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+	border-radius: 20px;
+}
