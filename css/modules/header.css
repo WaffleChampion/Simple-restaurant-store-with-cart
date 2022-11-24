@@ -23,3 +23,10 @@
 	height: 5rem;
 	width: 5rem;
 }
+
+.header__cart-icon{
+	position: absolute;
+	height: 5rem;
+	width: 5rem;
+	right: 5%;
+}

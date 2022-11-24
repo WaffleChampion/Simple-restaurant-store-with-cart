@@ -3,6 +3,10 @@
 	width: 95%;
 	height: 30rem;
 	background-color: red;
+	display: grid;
+	grid-template-areas: "previous-button slide slide slide slide next-button";
+	gap: 1rem;
+	text-align: center;
 	left: 2.5%;
 	right: 2.5%;
 	margin-top: 2rem;
@@ -12,15 +16,15 @@
 }
 
 .slide-show__object{
-	position: relative;
+	position: absolute;
 	height: 100%;
-	width: 50%;
-	left: 25%;
+	width: 100%;
+	grid-area: slide;
 }
 
 .slide-show__image{
 	display: none;
-	object-fit: scale-down;
+
 	height: 100%;
 	width: 100%;
 }
@@ -30,17 +34,18 @@
 }
 
 .slide-show__next-image, .slide-show__previous-image {
-	position: absolute;
+	align-items: center;
 	font-size: 3rem;
 	top: 45%;
+
 }
 
 .slide-show__next-image{
-	right: 15%;
+	grid-area: next-button;
 }
 
 .slide-show__previous-image{
-	left: 15%;
+	grid-area: previous-button;
 }
 
 
