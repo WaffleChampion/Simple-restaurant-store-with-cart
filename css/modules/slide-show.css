@@ -19,10 +19,30 @@
 }
 
 .slide-show__image{
+	display: none;
 	object-fit: scale-down;
 	height: 100%;
 	width: 100%;
 }
+
+.slide-show__image--active{
+	display: block;
+}
+
+.slide-show__next-image, .slide-show__previous-image {
+	position: absolute;
+	font-size: 3rem;
+	top: 45%;
+}
+
+.slide-show__next-image{
+	right: 15%;
+}
+
+.slide-show__previous-image{
+	left: 15%;
+}
+
 
 @media screen and (max-width: 767px) {
 	.slide-show__container{

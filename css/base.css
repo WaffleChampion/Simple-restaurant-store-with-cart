@@ -7,11 +7,11 @@ a {
 	color: red;
 }
 
-button:hover {
-	color: red;
-}
-
 iframe {
 	height: 10rem;
+	width: 100%;
+}
+
+main{
 	width: 100%;
 }

@@ -6,20 +6,20 @@
 	right: 2.5%;
 	margin-top: 2rem;
 	margin-bottom: 2rem;
+	padding: 1rem;
 	background-color: aliceblue;
 	display: grid;
 	gap: 2rem;
 	grid-template-areas: 
 	"header-text header-text header-text"
-	"menu-image menu-text menu-text"
-	"menu-image menu-text menu-text"
-	"menu-button menu-text menu-text"
-
-
+	"menu-image menu-text-description menu-text-description"
+	"menu-image menu-text-description menu-text-description"
+	"menu-button menu-text-allergens menu-text-allergens"
 }
 
 .menu-item__header{
 	grid-area: header-text;
+	text-align: center;
 }
 
 .menu-item__image{
@@ -27,7 +27,11 @@
 }
 
 .menu-item__info{
-	grid-area: menu-text;
+	grid-area: menu-text-description;
+}
+
+.menu-item__allergens{
+	grid-area: menu-text-allergens;
 }
 
 .menu-item__button{
@@ -37,12 +41,14 @@
 
 }
 
+
 @media screen and (max-width: 767px) {
 	.menu-item{
 		grid-template-areas: 
 		"header-text"
 		"menu-image"
-		"menu-text"
+		"menu-text-description"
+		"menu-text-allergens"
 		"menu-button";
 	}
 	}
