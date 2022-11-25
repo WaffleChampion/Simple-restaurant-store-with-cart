@@ -9,16 +9,23 @@ export default function addToCart(){
 
 		function handleAddToCartClick(){
 			console.log(localStorage.getItem('cart'))
-			cart = JSON.parse(localStorage.getItem('cart'))
-			console.log(cart)
-			cart.push({
-				dishName: itemName.innerText,
-				dishPrice: 200
-			})
-			//cart.concat()
+			if(JSON.parse(localStorage.getItem('cart'))){
+				cart = JSON.parse(localStorage.getItem('cart'))
+				console.log(cart)
+				cart.push({
+					dishName: itemName.innerText,
+					dishPrice: 200
+				})
+				localStorage.setItem('cart', JSON.stringify(cart))
+			}else{
+				cart.push({
+					dishName: itemName.innerText,
+					dishPrice: 200
+				})
 
-
-			localStorage.setItem('cart', JSON.stringify(cart))
+				localStorage.setItem('cart', JSON.stringify(cart))
+			}
+			
 
 
 		}
