@@ -5,17 +5,20 @@ export default function slideShow(){
 	const nextButton = document.querySelector('.slide-show__next-image');
 	const slideShowImage = document.querySelectorAll('.slide-show__image');
 
-	if(previousButton && nextButton){
+	setInterval(handleNextButtonClick, 3000);
+
+	if(previousButton && nextButton && slideShowImage){
 		previousButton.addEventListener('click', handlePreviousButtonClick);
-	nextButton.addEventListener('click', handleNextButtonClick);
+		nextButton.addEventListener('click', handleNextButtonClick);
+	}
 
 	function handleNextButtonClick(){
-		reduceIndex()
+		increaseIndex();
 		renderImage();
 	}
 
 	function handlePreviousButtonClick(){
-		increaseIndex()
+		reduceIndex();
 		renderImage();
 	}
 
@@ -41,7 +44,7 @@ export default function slideShow(){
 		}
 		slideShowImage[currentIndex].classList.add('slide-show__image--active')
 	}
-	}
+	
 	
 
 }
