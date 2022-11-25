@@ -34,7 +34,7 @@
 	grid-area: menu-text-allergens;
 }
 
-.menu-item__button{
+.menu-item__add-to-cart{
 	grid-area: menu-button;
 	background-color: red;
 	margin: 2rem;
