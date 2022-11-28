@@ -1,6 +1,5 @@
 export default function printCart(){
 	let cartSum=0;
-	console.log(JSON.parse(localStorage.getItem('cart')))
 	const clearCartButton = document.querySelector('.checkout-area__clear-cart');
 	const checkoutAreaDiv = document.querySelector('.checkout-area__cart-list');
 	const purchaseButton = document.querySelector('.checkout-area__purchase');

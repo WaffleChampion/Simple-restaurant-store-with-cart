@@ -30,3 +30,13 @@
 	width: 5rem;
 	right: 5%;
 }
+
+.header__cart-items{
+	position: absolute;
+	top: -15%;
+	right: -15%;
+	width: 2.5rem;
+	height: 2.5rem;
+	background-color: blue;
+	border-radius: 100%;
+}

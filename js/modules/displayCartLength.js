@@ -3,7 +3,13 @@ export default function displayCartLength(){
 
 	if(cartLengthDiv){
 		let numberOfItemsInCart = JSON.parse(localStorage.getItem('cart'));
+		
 
-		cartLengthDiv.innerText = numberOfItemsInCart.length
+		if(!numberOfItemsInCart){
+			cartLengthDiv.style.display='none'
+		}
+		if(numberOfItemsInCart){
+			cartLengthDiv.innerText = numberOfItemsInCart.length
+		}
 	}
 }
