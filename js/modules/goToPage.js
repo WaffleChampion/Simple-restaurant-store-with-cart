@@ -11,30 +11,8 @@ export default function goToPage(){
 
 	function handleMenuItemCardClick(event){
 		let clickedCard = event.currentTarget.dataset.menu;
-
-		 switch (clickedCard) {
-			case "margherita":
-				window.location.href = "/html-pages/menuMargherita.html"
-				break;
-			case "hawaii":
-				window.location.href = "/html-pages/menuHawaiian.html"
-				break;
-			case "chicken":
-				window.location.href = "/html-pages/menuChicken.html"
-				break;
-			case "meatballs":
-				window.location.href = "/html-pages/menuMeatballs.html"
-				break;
-			case "peperoni":
-				window.location.href = "/html-pages/menuPeperoni.html"
-				break;
-			case "vegetarian":
-				window.location.href = "/html-pages/menuVegetarian.html"
-				break;
-		
-			default:
-				break;
-		}
+		window.location.href = "/html-pages/menu-item.html"
+		localStorage.setItem('currentPage', clickedCard)
 	}
 
 	function handleGoToHomeClick(){

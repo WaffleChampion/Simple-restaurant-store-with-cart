@@ -5,11 +5,12 @@ export default function slideShow(){
 	const nextButton = document.querySelector('.slide-show__next-image');
 	const slideShowImage = document.querySelectorAll('.slide-show__image');
 
-	setInterval(handleNextButtonClick, 3000);
+	
 
 	if(previousButton && nextButton && slideShowImage){
 		previousButton.addEventListener('click', handlePreviousButtonClick);
 		nextButton.addEventListener('click', handleNextButtonClick);
+		setInterval(handleNextButtonClick, 3000);
 	}
 
 	function handleNextButtonClick(){
