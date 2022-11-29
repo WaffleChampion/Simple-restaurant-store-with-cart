@@ -11,13 +11,12 @@
 	height: 10rem;
 	width: 60%;
 	left: 20%;
-	background-color: red;
 	display: grid;
 
 	grid-template-areas: 
-	"cart-image cart-name cart-name"
-	"cart-info cart-info cart-info"
-	"cart-price cart-price cart-price";
+	"cart-image cart-name cart-name cart-quantity cart-button"
+	"cart-info cart-info cart-info cart-quantity cart-button"
+	"cart-price cart-price cart-price cart-quantity cart-button";
 	padding: 1rem;
 	margin: 1rem;
 }
@@ -44,6 +43,17 @@
 	grid-area: cart-image;
 	height: 3.33rem;
 	width: 3.33rem;
+}
+
+.checkout-area__item-quantity{
+	grid-area: cart-quantity;
+	height: 2rem;
+	width: 2rem;
+	margin: 1rem;
+}
+
+.checkout-area__remove-button{
+
 }
 
 @media screen and (max-width: 767px) {

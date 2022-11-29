@@ -3,7 +3,7 @@ import goToPage from "./modules/goToPage.js";
 import addToCart from "./modules/addToCart.js";
 import printCart from "./modules/printCart.js";
 import printDishPage from "./modules/printDishPage.js";
-import displayCartLength from "./modules/displayCartLength.js";
+import removeItem from "./modules/removeItem.js";
 
 
 
@@ -12,7 +12,7 @@ addToCart();
 slideShow();
 printCart();
 printDishPage();
-displayCartLength();
+removeItem();
 
 
 
