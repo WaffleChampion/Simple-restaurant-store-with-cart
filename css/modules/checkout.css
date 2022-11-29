@@ -9,40 +9,44 @@
 .checkout-area__cart-item{
 	position: relative;
 	height: 10rem;
-	width: 60%;
-	left: 20%;
+	width: 90%;
+	left: 5%;
 	display: grid;
 
 	grid-template-areas: 
-	"cart-image cart-name cart-name cart-quantity cart-button"
-	"cart-info cart-info cart-info cart-quantity cart-button"
-	"cart-price cart-price cart-price cart-quantity cart-button";
+	"cart-image cart-name cart-name cart-price decrease cart-quantity increase cart-button"
+	"cart-info cart-info cart-info cart-price decrease cart-quantity increase cart-button";
 	padding: 1rem;
 	margin: 1rem;
+	border: var(--main-border-color);
 }
 
 .checkout-area__item-name{
 	grid-area: cart-name;
-	width: 20rem;
+	width: 100%;
 	text-align: center;
+	margin: 1rem;
 }
 
 .checkout-area__item-info{
 	grid-area: cart-info;
-	width: 20rem;
+	width: 100%;
 	text-align: center;
+	margin: 1rem;
 }
 
 .checkout-area__item-price{
 	grid-area: cart-price;
-	width: 20rem;
+	width: 15rem;width: 100%;
 	text-align: center;
+	margin: 1rem;
 }
 
 .checkout-area__item-image{
 	grid-area: cart-image;
 	height: 3.33rem;
-	width: 3.33rem;
+	width: 100%;
+	margin: 1rem;
 }
 
 .checkout-area__item-quantity{
@@ -52,17 +56,46 @@
 	margin: 1rem;
 }
 
-.checkout-area__remove-button{
+.checkout-area__item-quantity::-webkit-outer-spin-button,
+::-webkit-inner-spin-button{
+	display: none;
+}
 
+.checkout-area__remove-button{
+	grid-area: cart-button;
+	height: 2rem;
+	width: 100%;
+	margin: 1rem;
+	border: var(--main-border-color);
+}
+
+.checkout-area__increase-button{
+	grid-area: increase;
+	height: 2rem;
+	width: 100%;
+	margin-top: 1rem;
+	left: 0%;
+	border: var(--main-border-color);
+}
+.checkout-area__decrease-button{
+	grid-area: decrease;
+	height: 2rem;
+	width: 100%;
+	margin-top: 1rem;
+	border: var(--main-border-color);
 }
 
 @media screen and (max-width: 767px) {
 
 	.checkout-area__cart-item{
+		height: 100%;
+		width: 90%;
+		left: 5%;
 		grid-template-areas: 
 		"cart-name cart-name"
 	 	"cart-info cart-info"
-		"cart-price cart-price";
+		"cart-price cart-price"
+		"cart-quantity cart-button";
 	}
 
 	.checkout-area__item-image{

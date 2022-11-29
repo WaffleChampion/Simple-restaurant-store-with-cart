@@ -1,3 +1,5 @@
+import * as removeItem from "./removeItem.js";
+
 export default function printCart(){
 	let cartSum=0;
 	const clearCartButton = document.querySelector('.checkout-area__clear-cart');
@@ -15,9 +17,21 @@ export default function printCart(){
 	printCartList();
 	const quantityInput = document.querySelectorAll('.checkout-area__item-quantity')
 	const prices = document.querySelectorAll('.checkout-area__item-price')
+	const decreaseQuantityButton = document.querySelectorAll('.checkout-area__decrease-button')
+	const increaseQuantityButton = document.querySelectorAll('.checkout-area__increase-button')
 	if(quantityInput){
 		quantityInput.forEach(item =>{
-			item.addEventListener('click', handleQuantityInputClick)
+			item.addEventListener('change', handleQuantityInputChange)
+		})
+	}
+	if(decreaseQuantityButton, increaseQuantityButton){
+		
+		decreaseQuantityButton.forEach(Element =>{
+			Element.addEventListener('click', handleDecreaseQuantityButtonClick)
+		})
+		
+		increaseQuantityButton.forEach(Element =>{
+			Element.addEventListener('click', handleIncreaseQuantityButtonClick)
 		})
 	}
 
@@ -39,6 +53,9 @@ export default function printCart(){
 					let itemImage = document.createElement('img')
 					let itemQuantity = document.createElement('input')
 					let removeButton = document.createElement('button')
+					let increaseButton = document.createElement('button')
+					let decreaseButton = document.createElement('button')
+
 					itemDiv.setAttribute('class', 'checkout-area__cart-item')
 					itemDiv.setAttribute('data-index', index)
 					itemName.setAttribute('class', 'checkout-area__item-name');
@@ -47,15 +64,32 @@ export default function printCart(){
 					itemQuantity.setAttribute('type', 'number')
 					itemQuantity.setAttribute('class', 'checkout-area__item-quantity')
 					itemQuantity.setAttribute('value', cartItem.dishQuantity)
+					itemQuantity.setAttribute('min', 0)
+					itemQuantity.setAttribute('data-index', index)
 					itemImage.setAttribute('src', cartItem.dishImage)
 					itemImage.setAttribute('class', 'checkout-area__item-image')
 					removeButton.setAttribute('class', 'checkout-area__remove-button')
 					removeButton.setAttribute('data-index', index)
+					increaseButton.setAttribute('class', 'checkout-area__increase-button')
+					increaseButton.setAttribute('data-index', index)
+					decreaseButton.setAttribute('class', 'checkout-area__decrease-button')
+					decreaseButton.setAttribute('data-index', index)
+
 					itemName.innerText='Item name: '+cartItem.dishName;
 					itemPrice.innerText=cartItem.dishPrice;
 					itemAllergens.innerText=cartItem.dishAllergens
 					removeButton.innerText='remove'
-					itemDiv.append(itemName, itemAllergens,  itemPrice, itemImage, itemQuantity, removeButton);
+					increaseButton.innerText='+';
+					decreaseButton.innerText='-'
+
+					itemDiv.append(itemName, 
+						itemAllergens,  
+						itemPrice, 
+						itemImage, 
+						decreaseButton, 
+						itemQuantity, 
+						increaseButton, 
+						removeButton);
 					checkoutAreaDiv.append(itemDiv);
 				})
 			}
@@ -64,17 +98,31 @@ export default function printCart(){
 		
 	}
 
-	function handleQuantityInputClick(){
+	function handleQuantityInputChange(event){
 		cartSum = 0;
 		for(let index=0; index <quantityInput.length; index +=1){
-			
-			console.log(quantityInput[index].value)
-			console.log(prices[index].innerText)
 			cartSum += parseInt(quantityInput[index].value)*parseInt(prices[index].innerText)
-			
+			if(parseInt(event.currentTarget.value) === 0){
+				removeItem.handleRemoveButtonClick(event)
+			}
 		}
-		console.log(cartSum)
-		
 		checkoutAreaTotal.innerText = 'Total: ' +cartSum + ' kr'
+	}
+
+	function handleDecreaseQuantityButtonClick(event){
+		if(quantityInput[event.currentTarget.dataset.index].value > 0){
+			quantityInput[event.currentTarget.dataset.index].value -= 1
+		}
+		if(Number(quantityInput[event.currentTarget.dataset.index].value) === 0){
+			removeItem.handleRemoveButtonClick(event)
+		}
+		handleQuantityInputChange(event)
+	}
+
+	function handleIncreaseQuantityButtonClick(event){
+		let quantityInputNumber = Number(quantityInput[event.currentTarget.dataset.index].value)
+		quantityInputNumber++
+		quantityInput[event.currentTarget.dataset.index].value = quantityInputNumber
+		handleQuantityInputChange(event)
 	}
 }
