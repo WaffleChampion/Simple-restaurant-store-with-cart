@@ -2,11 +2,16 @@ export default function printCartList(cartsum1){
 	let cartSum = cartsum1
 	const checkoutAreaDiv = document.querySelector('.checkout-area__cart-list');
 	const checkoutAreaTotal = document.querySelector('.checkout-area__total')
+	// executing if the Html Element exists
 	if(checkoutAreaDiv){
 		let currentCart = JSON.parse(localStorage.getItem('cart'));
 		if(currentCart){
+			// Creates Cards for each item in currentCart
 			currentCart.forEach((cartItem, index) =>{
+				// Calculating the sum of the items in the cart
 				cartSum += parseInt(cartItem.dishPrice)*parseInt(cartItem.dishQuantity)
+
+				// Creating Html Elements
 				let itemDiv = document.createElement('div');
 				let itemName = document.createElement('h2');
 				let itemPrice = document.createElement('p');
@@ -18,6 +23,7 @@ export default function printCartList(cartsum1){
 				let increaseButton = document.createElement('button')
 				let decreaseButton = document.createElement('button')
 
+				// Setting attributes for the created Html Elements
 				itemDiv.setAttribute('class', 'checkout-area__cart-item')
 				itemDiv.setAttribute('data-index', index)
 				itemName.setAttribute('class', 'checkout-area__item-name');
@@ -38,13 +44,15 @@ export default function printCartList(cartsum1){
 				decreaseButton.setAttribute('data-index', index)
 				quantityDiv.setAttribute('class', 'checkout-area__quantity-container')
 
+				// Setting what is displayed in the Html Elements
 				itemName.innerText='Item name: '+cartItem.dishName;
 				itemPrice.innerText=cartItem.dishPrice;
 				itemAllergens.innerText=cartItem.dishAllergens
 				removeButton.innerText='remove'
 				increaseButton.innerText='+';
 				decreaseButton.innerText='-'
-				
+
+				// Attaching the Html Elements to parent
 				quantityDiv.append(
 					decreaseButton, 
 					itemQuantity, 

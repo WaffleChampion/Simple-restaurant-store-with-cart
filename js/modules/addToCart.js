@@ -31,7 +31,7 @@ export default function addToCart(){
 	}
 
 	function handleAddToCartClick(){
-		let obj = {
+		let object = {
 			dishName: itemName.innerText,
 			dishAllergens: itemAllergens.innerText,
 			dishPrice: itemPrice.innerText,
@@ -40,13 +40,14 @@ export default function addToCart(){
 			dishIndex: index
 		}
 			if(JSON.parse(localStorage.getItem('cart'))){
-				cart = JSON.parse(localStorage.getItem('cart'))
+				cart = JSON.parse(localStorage.getItem('cart'));
+				
 				let test = cart.some(item =>{
 					return item.dishName === itemName.innerText 
 					
 				})
 
-					 if(test){
+				if (test){
 						let index = cart.findIndex(item =>{
 							return item.dishName === itemName.innerText 
 						})
@@ -58,8 +59,8 @@ export default function addToCart(){
 
 					if(!test){
 						index +=1
-						obj.dishIndex=index
-						cart.push(obj)
+						object.dishIndex=index
+						cart.push(object)
 						//index = cart.length 
 
 						localStorage.setItem('cart', JSON.stringify(cart))
@@ -69,9 +70,9 @@ export default function addToCart(){
 				
 			}else{
 				index = 0
-				obj.dishIndex=index
-				cart.push(obj)
-				console.log(obj)
+				object.dishIndex=index
+				cart.push(object)
+				console.log(object)
 	
 				localStorage.setItem('cart', JSON.stringify(cart))	
 				
