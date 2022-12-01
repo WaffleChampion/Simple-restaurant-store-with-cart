@@ -1,51 +1,48 @@
+import { renderImage } from "./render.js";
+
 export default function slideShow(){
+	//Variables
 	let currentIndex = 0;
 
+	//Queryselectors
 	const previousButton = document.querySelector('.slide-show__previous-image');
 	const nextButton = document.querySelector('.slide-show__next-image');
 	const slideShowImage = document.querySelectorAll('.slide-show__image');
 
-		
-
-	if(previousButton && nextButton && slideShowImage){
+	//Eventlisteners
+	if (previousButton && nextButton && slideShowImage){
 		previousButton.addEventListener('click', handlePreviousButtonClick);
 		nextButton.addEventListener('click', handleNextButtonClick);
 		setInterval(handleNextButtonClick, 3000);
 	}
 
+	//Handelers
 	function handleNextButtonClick(){
 		increaseIndex();
-		renderImage();
+		renderImage(slideShowImage, currentIndex);
 	}
 
 	function handlePreviousButtonClick(){
 		reduceIndex();
-		renderImage();
+		renderImage(slideShowImage, currentIndex);
 	}
 
+	//reduces image index
 	function reduceIndex(){
-		if(currentIndex=== 0){
+		if (currentIndex=== 0){
 			currentIndex = slideShowImage.length-1;
 		}else{
 			currentIndex -=1;
 		}
 	}
 
+	//Increases image index
 	function increaseIndex(){
-		if(currentIndex === slideShowImage.length-1){
+		if (currentIndex === slideShowImage.length-1){
 			currentIndex=0; 
-		}else{
+		}else {
 			currentIndex+=1;
 		}
 	}
-
-	function renderImage(){
-		for(let image of slideShowImage){
-			image.classList.remove('slide-show__image--active')
-		}
-		slideShowImage[currentIndex].classList.add('slide-show__image--active')
-	}
-	
-	
 
 }
