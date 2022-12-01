@@ -1,11 +1,13 @@
 export default function goToPage(){
 	//Queryselectors
-	let menuItemCards;
+	const menuItemCards  = document.querySelectorAll('.menu-cards__card');
 	const homeIcon = document.querySelector('.header__image');
 	const cartIcon = document.querySelector('.header__cart-icon');
 
-	render();
 	//Eventlisteners
+	menuItemCards.forEach(item =>{
+		item.addEventListener('click', handleMenuItemCardClick);
+	});
 	homeIcon.addEventListener('click', handleGoToHomeClick);
 	cartIcon.addEventListener('click', handleGoToCartClick);
 
@@ -20,11 +22,6 @@ export default function goToPage(){
 
 	function handleGoToCartClick(){
 		navigateToCheckoutPage();
-	}
-
-	function render(){
-		getIndexMenuItemQuerySelector();
-		getIndexMenuItemEventListener();
 	}
 
 	//Navigates to the clicked cards items page
@@ -43,17 +40,5 @@ export default function goToPage(){
 	//Navigates to checkout
 	function navigateToCheckoutPage(){
 		window.location.href = "/html-pages/checkout.html";
-	}
-
-
-
-	function getIndexMenuItemQuerySelector(){
-		menuItemCards  = document.querySelectorAll('.menu-cards__card');
-	}
-
-	function getIndexMenuItemEventListener(){
-		menuItemCards.forEach(item =>{
-			item.addEventListener('click', handleMenuItemCardClick);
-		});
 	}
 }

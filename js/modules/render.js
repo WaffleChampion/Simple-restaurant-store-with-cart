@@ -124,3 +124,24 @@ export function generateMenuItemCards(cardsDiv){
 		})
 	}
 }
+
+export function generateSlideShowImages(slideShowContainer){
+	if(slideShowContainer){
+		menuItems.forEach((item, index)=> {
+			const figureElement = document.createElement('figure');
+			const imageElement = document.createElement('img');
+
+			figureElement.setAttribute('class', 'slide-show__object');
+			if (index === 0){
+				imageElement.setAttribute('class', 'slide-show__image slide-show__image--active');
+			}else {
+				imageElement.setAttribute('class', 'slide-show__image');
+			}
+
+			imageElement.src = item.image;
+
+			figureElement.append(imageElement);
+			slideShowContainer.append(figureElement);
+		})
+	}
+}
