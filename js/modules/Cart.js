@@ -3,7 +3,7 @@ import { generateCheckoutHtml, displayItemsInCart } from "./render.js";
 export default function cart(){
 	//Variables
 	let storage = [];
-	if (JSON.parse(localStorage.getItem('cart'))){
+	if (localStorage.getItem('cart')){
 		storage = JSON.parse(localStorage.getItem('cart'));
 	}
 	let index;
@@ -28,11 +28,10 @@ export default function cart(){
 	let removeButton;
 	let cartItemDiv;
 
+	render();
 	//Eventlisteners
-	window.addEventListener('load', handleWindowLoad);
 
 	if (addToCartButton){
-		console.log(addToCartButton)
 		addToCartButton.addEventListener('click', handleAddToCartClick);
 	}
 
@@ -43,15 +42,11 @@ export default function cart(){
 		purchaseButton.addEventListener('click', handleCartButtonClick);
 	}
 
-	//Handlers
+	//Handlers	
 	function handleAddToCartClick(){
 		createCartObject();
 		let existInCart = verifyItemInCart();
 		addItemToCart(existInCart);
-		render();
-	}
-
-	function handleWindowLoad(){
 		render();
 	}
 
@@ -125,11 +120,10 @@ export default function cart(){
 	function render(){
 		displayItemsInCart(storage, cartLengthDiv);
 		if (checkoutAreaDiv && checkoutAreaTotal){
-			//generateCheckoutHtml();
 			generateCheckoutHtml(storage, checkoutAreaDiv);
 			calculateSum();
 			setCheckoutQueryselectors();
-			setCheckoutEventHandlers();
+			setCheckoutEventListeners();
 		}
 
 	}
@@ -186,7 +180,7 @@ export default function cart(){
 	}
 
 	//Sets eventhandlers
-	function setCheckoutEventHandlers(){
+	function setCheckoutEventListeners(){
 		if (quantityInput){
 			quantityInput.forEach(item =>{
 				item.addEventListener('change', handleQuantityInputChange);
@@ -214,11 +208,11 @@ export default function cart(){
 	//Removes a specific item from the cart
 	function removeItem(event){
 		cartItemDiv.forEach(item => {
-			if (item.dataset.index === event.currentTarget.dataset.index){
+			if (item.dataset.index === event.currentTarget.dataset.index) {
 				item.remove();
 				storage.splice(event.currentTarget.dataset.index, 1);
 				localStorage.setItem('cart', JSON.stringify(storage));			
-			}else if (item.dataset.index === event.currentTarget.parentElement.dataset.index){
+			}else if (item.dataset.index === event.currentTarget.parentElement.dataset.index) {
 				item.remove();
 				storage.splice(event.currentTarget.parentElement.dataset.index, 1);
 				localStorage.setItem('cart', JSON.stringify(storage));

@@ -1,5 +1,6 @@
 //imports menuitems array
 import { menuItems } from "./menuItems.js";
+
 //Creates Html cards for each item in storage
 export function generateCheckoutHtml(storage, checkoutAreaDiv){
 	if (storage && checkoutAreaDiv){
@@ -94,4 +95,32 @@ export function renderImage(slideShowImage, currentIndex){
 		image.classList.remove('slide-show__image--active');
 	}
 	slideShowImage[currentIndex].classList.add('slide-show__image--active');
+}
+
+export function generateMenuItemCards(cardsDiv){
+	if(cardsDiv){
+		menuItems.forEach((item, index) =>{
+			const articleElement = document.createElement('article');
+			const headerElement = document.createElement('header');
+			const h2Element = document.createElement('h2');
+			const imageElement = document.createElement('img');
+			const divElement = document.createElement('div');
+			const pElement = document.createElement('p');
+
+			articleElement.setAttribute('class', 'menu-cards__card');
+			articleElement.setAttribute('data-index', index);
+			imageElement.setAttribute('class', 'menu-cards__figure-image');
+			divElement.setAttribute('class', 'menu-cards__card-content')
+
+			h2Element.innerText = item.name;
+			imageElement.src = item.image;
+			pElement.innerText = item.description;
+
+			headerElement.append(h2Element);
+			divElement.append(pElement);
+			articleElement.append(headerElement, imageElement, divElement);
+			cardsDiv.append(articleElement);
+			
+		})
+	}
 }
