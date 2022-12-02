@@ -68,8 +68,7 @@ export default function cart(){
 	//Handlers	
 	function handleAddToCartClick(){
 		createCartObject();
-		let existInCart = verifyItemInCart();
-		addItemToCart(existInCart);
+		addAndCheckCart();
 		render();
 	}
 
@@ -95,6 +94,11 @@ export default function cart(){
 		removeItem(event);
 		render();
 		calculateSum();
+	}
+
+	function addAndCheckCart(){
+		let existInCart = verifyItemInCart();
+		addItemToCart(existInCart);
 	}
 
 	//Creates an object to be added to storage
