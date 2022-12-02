@@ -167,14 +167,13 @@ export default function cart(){
 			for (let index=0; index < quantityInput.length; index +=1){
 				cartSum += parseInt(quantityInput[index].value)*parseInt(prices[index].innerText);
 			}
-			checkoutAreaTotal.innerText = 'Total: ' +cartSum + ' kr';
 		}else if (cartSum===0 && storage){
 			cartSum = 0;
 			storage.forEach(cartItem =>{
 				cartSum += parseInt(cartItem.dishPrice)*parseInt(cartItem.dishQuantity);
 			})
-			checkoutAreaTotal.innerText = 'Total: ' +cartSum + ' kr';
 		}
+		checkoutAreaTotal.innerText = 'Total: ' +cartSum + ' kr';
 
 	}
 
@@ -183,6 +182,11 @@ export default function cart(){
 		let quantityInputNumber = Number(quantityInput[event.currentTarget.dataset.index].value);
 		quantityInputNumber +=1;
 		quantityInput[event.currentTarget.dataset.index].value = quantityInputNumber;
+
+		storage.forEach((item, index)=>{
+			item.dishQuantity = quantityInput[index].value;
+		})
+		saveToLocalStorage();
 	}
 
 	//Decreases the quantity of a secific item in the cart
@@ -193,6 +197,10 @@ export default function cart(){
 		if (Number(quantityInput[event.currentTarget.dataset.index].value) === 0){
 			removeItem(event);
 		}
+		storage.forEach((item, index)=>{
+			item.dishQuantity = quantityInput[index].value;
+		})
+		saveToLocalStorage();
 	}
 
 	//Sets queryselectors for newly created elements
@@ -218,5 +226,9 @@ export default function cart(){
 				localStorage.setItem('cart', JSON.stringify(storage));
 			}
 		})
+	}
+
+	function saveToLocalStorage(){
+		localStorage.setItem('cart', JSON.stringify(storage));
 	}
 }
