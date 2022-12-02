@@ -1,14 +1,20 @@
 import slideShow from "./modules/slide-show.js";
 import goToPage from "./modules/goToPage.js";
 import printDishPage from "./modules/printDishPage.js";
-import cart from "./modules/Cart.js";
+import cart from "./modules/cart.js";
 import { generateMenuItemCards, generateSlideShowImages } from "./modules/render.js";
 
-const cardsDiv = document.querySelector('.menu-cards__box');
 const slideShowImageContainer = document.querySelector('.slide-show__container')
+const cardsDiv = document.querySelector('.menu-cards__box');
 
-generateSlideShowImages(slideShowImageContainer)
-generateMenuItemCards(cardsDiv)
+if (slideShowImageContainer){
+	generateSlideShowImages(slideShowImageContainer);
+}
+
+if (cardsDiv){
+	generateMenuItemCards(cardsDiv);
+}
+
 goToPage();
 slideShow();
 printDishPage();

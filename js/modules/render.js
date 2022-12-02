@@ -97,10 +97,12 @@ export function renderImage(slideShowImage, currentIndex){
 	slideShowImage[currentIndex].classList.add('slide-show__image--active');
 }
 
+//Renders a clickable card for each item in menuitems
 export function generateMenuItemCards(cardsDiv){
 	if(cardsDiv){
 		menuItems.forEach((item, index) =>{
 			const articleElement = document.createElement('article');
+			const buttonElement = document.createElement('button');
 			const headerElement = document.createElement('header');
 			const h2Element = document.createElement('h2');
 			const imageElement = document.createElement('img');
@@ -109,8 +111,9 @@ export function generateMenuItemCards(cardsDiv){
 
 			articleElement.setAttribute('class', 'menu-cards__card');
 			articleElement.setAttribute('data-index', index);
+			buttonElement.setAttribute('class', 'menu-cards__card-button')
 			imageElement.setAttribute('class', 'menu-cards__figure-image');
-			divElement.setAttribute('class', 'menu-cards__card-content')
+			divElement.setAttribute('class', 'menu-cards__card-content');
 
 			h2Element.innerText = item.name;
 			imageElement.src = item.image;
@@ -119,12 +122,13 @@ export function generateMenuItemCards(cardsDiv){
 			headerElement.append(h2Element);
 			divElement.append(pElement);
 			articleElement.append(headerElement, imageElement, divElement);
-			cardsDiv.append(articleElement);
-			
+			buttonElement.append(articleElement);
+			cardsDiv.append(buttonElement);
 		})
 	}
 }
 
+//Renders slideshow with images from menuitems
 export function generateSlideShowImages(slideShowContainer){
 	if(slideShowContainer){
 		menuItems.forEach((item, index)=> {

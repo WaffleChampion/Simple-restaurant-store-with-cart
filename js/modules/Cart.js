@@ -21,6 +21,7 @@ export default function cart(){
 	const checkoutAreaTotal = document.querySelector('.checkout-area__total');
 	const clearCartButton = document.querySelector('.checkout-area__clear-cart');
 	const purchaseButton = document.querySelector('.checkout-area__purchase');
+	//empty variables to hold queryselector elements when the elements are created
 	let quantityInput;
 	let prices;
 	let decreaseQuantityButton;
@@ -40,6 +41,28 @@ export default function cart(){
 	}
 	if (purchaseButton){
 		purchaseButton.addEventListener('click', handleCartButtonClick);
+	}
+	if (quantityInput){
+		quantityInput.forEach(item =>{
+			item.addEventListener('change', handleQuantityInputChange);
+		})
+	}
+	if (decreaseQuantityButton){
+		decreaseQuantityButton.forEach(Element =>{
+			Element.addEventListener('click', handleDecreaseQuantityButtonClick);
+		})
+	}
+
+	if (increaseQuantityButton){
+		increaseQuantityButton.forEach(Element =>{
+			Element.addEventListener('click', handleIncreaseQuantityButtonClick);
+		})
+	}
+
+	if (removeButton){
+		removeButton.forEach(element =>{
+			element.addEventListener('click', handleRemoveButtonClick);
+		})
 	}
 
 	//Handlers	
@@ -123,7 +146,6 @@ export default function cart(){
 			generateCheckoutHtml(storage, checkoutAreaDiv);
 			calculateSum();
 			setCheckoutQueryselectors();
-			setCheckoutEventListeners();
 		}
 
 	}
@@ -169,7 +191,7 @@ export default function cart(){
 		}
 	}
 
-	//Sets the queryselectors
+	//Sets queryselectors for newly created elements
 	function setCheckoutQueryselectors(){
 		quantityInput = document.querySelectorAll('.checkout-area__item-quantity');
 		prices = document.querySelectorAll('.checkout-area__item-price');
@@ -177,32 +199,6 @@ export default function cart(){
 		increaseQuantityButton = document.querySelectorAll('.checkout-area__increase-button');
 		removeButton = document.querySelectorAll('.checkout-area__remove-button');
 		cartItemDiv = document.querySelectorAll('.checkout-area__cart-item');
-	}
-
-	//Sets eventhandlers
-	function setCheckoutEventListeners(){
-		if (quantityInput){
-			quantityInput.forEach(item =>{
-				item.addEventListener('change', handleQuantityInputChange);
-			})
-		}
-		if (decreaseQuantityButton){
-			decreaseQuantityButton.forEach(Element =>{
-				Element.addEventListener('click', handleDecreaseQuantityButtonClick);
-			})
-		}
-	
-		if (increaseQuantityButton){
-			increaseQuantityButton.forEach(Element =>{
-				Element.addEventListener('click', handleIncreaseQuantityButtonClick);
-			})
-		}
-	
-		if (removeButton){
-			removeButton.forEach(element =>{
-				element.addEventListener('click', handleRemoveButtonClick);
-			})
-		}
 	}
 
 	//Removes a specific item from the cart

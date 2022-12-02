@@ -1,11 +1,11 @@
 export default function goToPage(){
 	//Queryselectors
-	const menuItemCards  = document.querySelectorAll('.menu-cards__card');
+	const menuItemCardsButton  = document.querySelectorAll('.menu-cards__card');
 	const homeIcon = document.querySelector('.header__image');
 	const cartIcon = document.querySelector('.header__cart-icon');
 
 	//Eventlisteners
-	menuItemCards.forEach(item =>{
+	menuItemCardsButton.forEach(item =>{
 		item.addEventListener('click', handleMenuItemCardClick);
 	});
 	homeIcon.addEventListener('click', handleGoToHomeClick);
@@ -26,7 +26,7 @@ export default function goToPage(){
 
 	//Navigates to the clicked cards items page
 	function navigateToClickedItemPage(event){
-		console.log('clicked')
+		console.log(window.location);
 		let clickedCard = event.currentTarget.dataset.index;
 		window.location.href = "/html-pages/menu-item.html";
 		localStorage.setItem('currentPage', clickedCard);

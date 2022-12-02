@@ -1,4 +1,4 @@
-//Array of objects containing info about menu pages
+//Array of objects containing info about dishes
 const menuItems = [
 	{
 		name: 'Pizza Margherita',
@@ -41,6 +41,13 @@ const menuItems = [
 		description: 'Vegetarian pizza with and asortment of stuff',
 		info: 'Allergens: egg, wheat',
 		price: '290kr'
+	},
+	{
+		name: 'Pizza with Ham',
+		image: '/assets/img/pizza-with-ham.jpg',
+		description: 'Pizza with ham and cheese',
+		info: 'Allergens: egg, wheat',
+		price: '150kr'
 	}
 ]
 
