@@ -1,4 +1,4 @@
-import { generateClickedMenuPage } from "./render.js";
+import { menuItems } from "./menuItems.js";
 
 export default function printDishPage(){
 	//Variables
@@ -15,11 +15,20 @@ export default function printDishPage(){
 	const allergens = document.querySelector('.menu-item__allergens');
 	const price = document.querySelector('.menu-item__price');
 
-	//Eventlistener
-	window.addEventListener('load', handleWindowLoad);
+	render();
+
+	function generateClickedMenuPage(){
+		if (pageOutput){
+			header.firstElementChild.innerText = menuItems[currentPage].name;
+			image.src = menuItems[currentPage].image;
+			description.innerText = menuItems[currentPage].description;
+			allergens.innerText = menuItems[currentPage].info;
+			price.innerText = menuItems[currentPage].price;		
+		}
+	}
 
 	//handler
-	function handleWindowLoad(){
-		generateClickedMenuPage(pageOutput, header, image, description, allergens, price, currentPage);
+	function render(){
+		generateClickedMenuPage();
 	}
 }
