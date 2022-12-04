@@ -101,6 +101,7 @@ export default function cart(){
 					let index = cartLocalStorage.findIndex(item =>{
 						return item.dishName === itemName.innerText;
 					})
+					console.log(typeof(cartLocalStorage[index].dishQuantity))
 					cartLocalStorage[index].dishQuantity = cartLocalStorage[index].dishQuantity +=1;
 					
 					localStorage.setItem('cart', JSON.stringify(cartLocalStorage));
