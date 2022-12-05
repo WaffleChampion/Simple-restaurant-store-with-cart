@@ -19,7 +19,7 @@ export default function cart(){
 	let quantityInput = [];
 	let cartItemDiv = [];
 
-	render();
+	renderHtml();
 	//Eventlisteners
 
 	if (addToCartButton){
@@ -43,7 +43,7 @@ export default function cart(){
 		} else {
 			addItemToCart();
 		}
-		render();
+		renderHtml();
 	}
 
 	function handleCartButtonClick(){
@@ -52,22 +52,22 @@ export default function cart(){
 
 	function handleQuantityInputChange(event){
 		updateQuantity(event);
-		render();
+		renderHtml();
 	}
 
 	function handleDecreaseQuantityButtonClick(event){
 		decreaseQuantity(event);
-		render();
+		renderHtml();
 	}
 
 	function handleIncreaseQuantityButtonClick(event){
 		increaseQuantity(event);
-		render();
+		renderHtml();
 	}
 
 	function handleRemoveButtonClick(event){
 		removeItem(event);
-		render();
+		renderHtml();
 	}
 
 	//Creates an object to be added to storage
@@ -97,7 +97,7 @@ export default function cart(){
 		let indexOfExistingItem = currentCartItems.findIndex(item =>{
 			return item.dishName === cartObject.dishName;
 		})
-		currentCartItems[indexOfExistingItem].dishQuantity = currentCartItems[indexOfExistingItem].dishQuantity +=1;
+		currentCartItems[indexOfExistingItem].dishQuantity +=1 ;
 	}
 
 	//Adds to cart if it doesn't already exist
@@ -208,6 +208,7 @@ export default function cart(){
 		const selectedQuantityInput = event.currentTarget.dataset.index;
 		let currentQuantityValue;
 		currentQuantityValue = quantityInput[selectedQuantityInput].value
+		console.log(currentCartItems[selectedQuantityInput].dishQuantity)
 		currentCartItems[selectedQuantityInput].dishQuantity = currentQuantityValue;
 	}
 
@@ -273,7 +274,7 @@ export default function cart(){
 	}
 
 	//Renders HTML
-	function render() {
+	function renderHtml() {
 		displayItemsInCart(currentCartItems, cartLengthDiv);
 		if (checkoutAreaDiv && checkoutAreaTotal){
 			generateCheckoutHtml(currentCartItems, checkoutAreaDiv);
