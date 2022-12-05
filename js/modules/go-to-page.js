@@ -1,4 +1,4 @@
-import { menuItems } from "./menuItems.js";
+import { menuItems } from "./menu-items.js";
 
 export default function goToPage(){
 	//Queryselectors
