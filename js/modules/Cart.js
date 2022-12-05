@@ -2,22 +2,13 @@ import { menuItems } from "./menu-items.js";
 
 export default function cart(){
 	//Variables
-	let currentCartItems = [];
-	let currentActiveMenuPage = [];
-	if (localStorage.getItem('cart')){
-		currentCartItems = JSON.parse(localStorage.getItem('cart'));
-	}
-	if (localStorage.getItem('currentPage')){
-		currentActiveMenuPage = localStorage.getItem('currentPage');
-	}
+	let currentCartItems = getCartItemsFromLocalStorage();
+	let currentActiveMenuPage = getCurrentPageFromLocalStorage();
+	
 	let cartObject = {};
 
 	//Queryselectors
 	const addToCartButton = document.querySelector('.menu-item__add-to-cart');
-	const itemName = document.querySelector('.menu-item__header');
-	const itemAllergens =document.querySelector('.menu-item__allergens');
-	const itemPrice = document.querySelector('.menu-item__price');
-	const itemImage = document.querySelector('.menu-item__image');
 	const cartLengthDiv = document.querySelector('.header__cart-items');
 	const checkoutAreaDiv = document.querySelector('.checkout-area__cart-list');
 	const checkoutAreaTotal = document.querySelector('.checkout-area__total');
@@ -77,7 +68,6 @@ export default function cart(){
 	function handleRemoveButtonClick(event){
 		removeItem(event);
 		render();
-
 	}
 
 	//Creates an object to be added to storage
@@ -93,15 +83,14 @@ export default function cart(){
 
 	//Checks if the item exist in the cart, increases quantity if not
 	function verifyItemInCart(){
-			if (currentCartItems){
-				let checkIfItemExist = currentCartItems.some(item =>{
-					return item.dishName === cartObject.dishName;
-				});
-				
-				return checkIfItemExist;
-			} else{
-				return false;
-			}	
+		if (currentCartItems){
+			let checkIfItemExist = currentCartItems.some(item =>{
+				return item.dishName === cartObject.dishName;
+			});
+			return checkIfItemExist;
+		} else{
+			return false;
+		}	
 	}
 
 	function changeItemQuantityInCart(){
@@ -262,9 +251,20 @@ export default function cart(){
 		localStorage.setItem('cart', JSON.stringify(currentCartItems));
 	}
 
-	function getLocalStorage() {
-		currentCartItems = JSON.parse(localStorage.getItem('cart'));
+	function getCartItemsFromLocalStorage() {
+		if (JSON.parse(localStorage.getItem('cart'))) {
+			return JSON.parse(localStorage.getItem('cart'));
+		}else {
+			return [];
+		}
+	}
 
+	function getCurrentPageFromLocalStorage(){
+		if (localStorage.getItem('currentPage')) {
+			return localStorage.getItem('currentPage');
+		}else {
+			return [];
+		}
 	}
 
 	function renderCartSum(){
