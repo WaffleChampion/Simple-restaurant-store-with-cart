@@ -43,7 +43,7 @@ export default function goToPage(){
 		window.location.href = "/html-pages/checkout.html";
 	}
 
-		//Renders a clickable card for each item in menuitems
+	//Renders a clickable card for each item in menuitems
 	function createMenuCardsDomElement(item, index){
 		const articleElement = document.createElement('article');
 		const buttonElement = document.createElement('button');
@@ -74,6 +74,7 @@ export default function goToPage(){
 		return buttonElement;
 	}
 
+	//Attaches the cards to container
 	function generateMenuItemCards(){
 		if(cardsDiv){
 			menuItems.forEach((item, index) =>{
@@ -84,6 +85,7 @@ export default function goToPage(){
 		}
 	}
 
+	//render function
 	function render(){
 		generateMenuItemCards();
 	}

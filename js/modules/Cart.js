@@ -35,7 +35,7 @@ export default function cart(){
 	}
 
 	//Handlers	
-	function handleAddToCartClick(){
+	function handleAddToCartClick() {
 		createCartObject();
 		const itemInCart = verifyItemInCart();
 		if (itemInCart) {
@@ -46,32 +46,31 @@ export default function cart(){
 		renderHtml();
 	}
 
-	function handleCartButtonClick(){
+	function handleCartButtonClick() {
 		clearStorageAndGoToHome();
 	}
 
-	function handleQuantityInputChange(event){
-		updateQuantity(event);
+	function handleQuantityInputChange(event) {
 		renderHtml();
 	}
 
-	function handleDecreaseQuantityButtonClick(event){
+	function handleDecreaseQuantityButtonClick(event) {
 		decreaseQuantity(event);
 		renderHtml();
 	}
 
-	function handleIncreaseQuantityButtonClick(event){
+	function handleIncreaseQuantityButtonClick(event) {
 		increaseQuantity(event);
 		renderHtml();
 	}
 
-	function handleRemoveButtonClick(event){
+	function handleRemoveButtonClick(event) {
 		removeItem(event);
 		renderHtml();
 	}
 
 	//Creates an object to be added to storage
-	function createCartObject(){
+	function createCartObject() {
 		cartObject = {
 			dishName: menuItems[currentActiveMenuPage].name,
 			dishAllergens: menuItems[currentActiveMenuPage].info,
@@ -82,7 +81,7 @@ export default function cart(){
 	}
 
 	//Checks if the item exist in the cart, increases quantity if not
-	function verifyItemInCart(){
+	function verifyItemInCart() {
 		if (currentCartItems){
 			let checkIfItemExist = currentCartItems.some(item =>{
 				return item.dishName === cartObject.dishName;
@@ -93,20 +92,21 @@ export default function cart(){
 		}	
 	}
 
-	function changeItemQuantityInCart(){
-		let indexOfExistingItem = currentCartItems.findIndex(item =>{
+	//Increases quantity of selected item in cart
+	function changeItemQuantityInCart() {
+		let indexOfExistingItem = currentCartItems.findIndex(item => {
 			return item.dishName === cartObject.dishName;
 		})
-		currentCartItems[indexOfExistingItem].dishQuantity +=1 ;
+		currentCartItems[indexOfExistingItem].dishQuantity += 1 ;
 	}
 
 	//Adds to cart if it doesn't already exist
-	function addItemToCart(){
+	function addItemToCart() {
 		currentCartItems.push(cartObject);		
 	}
 
 	//Empties localstorage and navigates to index.html
-	function clearStorageAndGoToHome(){
+	function clearStorageAndGoToHome() {
 		localStorage.clear();
 		window.location.href = "/";
 	}
@@ -121,9 +121,12 @@ export default function cart(){
 
 	}
 
+	//Attaches cart cards to the checkout area container
 	function generateCheckoutHtml(storage, checkoutAreaDiv) {
 		if (storage && checkoutAreaDiv) {
 			checkoutAreaDiv.innerHTML='';
+			quantityInput = [];
+			cartItemDiv = [];
 			// Creates Cards for each item in currentCart
 			storage.forEach((cartItem, index) => {
 				const itemDiv = createMenuItemDOMElement(cartItem, index);
@@ -132,6 +135,7 @@ export default function cart(){
 		}
 	}
 
+	//Function to create cards with info from the cart
 	function createMenuItemDOMElement(cartItem, index) {
 		// Creating Html Elements
 		let itemDiv = document.createElement('div');
@@ -204,33 +208,26 @@ export default function cart(){
 		return itemDiv;
 	}
 
-	function updateQuantity(event) {
-		const selectedQuantityInput = event.currentTarget.dataset.index;
-		let currentQuantityValue;
-		currentQuantityValue = quantityInput[selectedQuantityInput].value
-		console.log(currentCartItems[selectedQuantityInput].dishQuantity)
-		currentCartItems[selectedQuantityInput].dishQuantity = currentQuantityValue;
-	}
-
 	//Increases the quantity of a specific item in the cart
-	function increaseQuantity(event){
-		currentCartItems[event.currentTarget.dataset.index].dishQuantity +=1
+	function increaseQuantity(event) {
+		currentCartItems[event.currentTarget.dataset.index].dishQuantity += 1
 	}
 
 	//Decreases the quantity of a secific item in the cart
-	function decreaseQuantity(event){
-		if (currentCartItems[event.currentTarget.dataset.index].dishQuantity > 1){
+	function decreaseQuantity(event) {
+		if (currentCartItems[event.currentTarget.dataset.index].dishQuantity > 1) {
 			currentCartItems[event.currentTarget.dataset.index].dishQuantity -= 1;
 		}
 	}
 
-	function displayItemsInCart(storage, cartLengthDiv){
-		if (cartLengthDiv){
+	//Displays current number of items in cart over cart icon
+	function displayItemsInCart(storage, cartLengthDiv) {
+		if (cartLengthDiv) {
 			let numberOfItemsInCart = storage;
-			cartLengthDiv.style.display='block';
+			cartLengthDiv.style.display = 'block';
 				
 			if (!numberOfItemsInCart){
-				cartLengthDiv.style.display='none';
+				cartLengthDiv.style.display = 'none';
 			}
 			if (numberOfItemsInCart){
 				cartLengthDiv.innerText = numberOfItemsInCart.length;
@@ -248,10 +245,12 @@ export default function cart(){
 		})
 	}
 
-	function saveToLocalStorage(){
+	//saves current cart to localStorage
+	function saveToLocalStorage() {
 		localStorage.setItem('cart', JSON.stringify(currentCartItems));
 	}
 
+	//Function to get items from localStorage or return empty array if it doesnt exist
 	function getCartItemsFromLocalStorage() {
 		if (JSON.parse(localStorage.getItem('cart'))) {
 			return JSON.parse(localStorage.getItem('cart'));
@@ -260,15 +259,17 @@ export default function cart(){
 		}
 	}
 
-	function getCurrentPageFromLocalStorage(){
+	//function to get clicked dish card from localStorage
+	function getCurrentPageFromLocalStorage() {
 		if (localStorage.getItem('currentPage')) {
 			return localStorage.getItem('currentPage');
-		}else {
+		} else {
 			return [];
 		}
 	}
 
-	function renderCartSum(){
+	//Renders total cost of items in cart
+	function renderCartSum() {
 		const cartSum = calculateSum();
 		checkoutAreaTotal.innerText = 'Total: ' + cartSum + ' kr';
 	}

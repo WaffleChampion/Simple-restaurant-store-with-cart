@@ -17,6 +17,7 @@ export default function printDishPage(){
 
 	render();
 
+	//Fills the html elements with data from menuItems
 	function generateClickedMenuPage(){
 		if (pageOutput){
 			header.firstElementChild.innerText = menuItems[currentPage].name;
